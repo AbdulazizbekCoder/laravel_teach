@@ -29,6 +29,16 @@
                             @enderror
                         </div>
                         <div class="col-sm-12 control-group mb-4">
+                            <select name="category_id">
+                                @foreach($categorys as $category)
+                                    <option value="{{$category->id }}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                                @error('title')
+                                <p class="help-block text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12 control-group mb-4">
                             <input type="file" class="form-control p-4" name="photo" placeholder="Rasm"/>
                             @error('photo')
                             <p class="help-block text-danger">{{$message}}</p>

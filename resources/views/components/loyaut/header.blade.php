@@ -8,9 +8,7 @@
             </div>
             <div class="col-md-6 text-center text-md-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="btn btn-sm btn-outline-light" href="">Home</a>
-                    <i class="fas fa-angle-double-right text-light mx-2"></i>
-                    <a class="btn btn-sm btn-outline-light disabled" href="">{{$pagetitle}}</a>
+                    <a href="{{route('posts.create')}}" class="btn btn-success px-5 py-3 mr-3 ">Create Post</a>
                 </div>
             </div>
         </div>
