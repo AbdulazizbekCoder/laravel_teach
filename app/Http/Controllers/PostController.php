@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -19,11 +20,13 @@ class PostController extends Controller
     {
         return view('posts.create')->with([
             'categorys' => Category::all(),
+            'tags' => Tag::all(),
         ]);
     }
 
     public function store(StorePostRequest $request)
     {
+
         if ($request->hasFile('photo')) {
             $name = $request->file('photo')->getClientOriginalName();
                 $path = $request->file('photo')->storeAs('file_upload', $name);

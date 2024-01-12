@@ -11,10 +11,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->call([
+        $this->call(class: [
             UserSeeder::class,
             CategorySeeder::class,
             PostSeeder::class,
+            TagSeeder::class,
         ]);
 
     }

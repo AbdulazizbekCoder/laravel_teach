@@ -34,9 +34,19 @@
                                     <option value="{{$category->id }}">{{$category->name}}</option>
                                 @endforeach
                             </select>
+                            @error('title')
+                            <p class="help-block text-danger">{{$message}}</p>
+                            @enderror
+                            <div class="col-sm-12 control-group m-4">
+                                <select name="tags[]" multiple>
+                                    @foreach($tags as $tag)
+                                        <option value="{{$tag->id }}">{{$tag->name}}</option>
+                                    @endforeach
+                                </select>
                                 @error('title')
                                 <p class="help-block text-danger">{{$message}}</p>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
                         <div class="col-sm-12 control-group mb-4">
                             <input type="file" class="form-control p-4" name="photo" placeholder="Rasm"/>

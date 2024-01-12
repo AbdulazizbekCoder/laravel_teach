@@ -80,7 +80,25 @@
                         <a href="{{route('posts.index')}}" class="nav-item nav-link">Blog</a>
                         <a href="{{route('contact')}}" class="nav-item nav-link">Contact</a>
                     </div>
+                    <div class="col-md-6 text-center text-md-right">
+
+                        <div class="d-inline-flex align-items-center ">
+
+                            @auth()
+                                <a href="{{route('posts.create')}}"
+                                   class="btn btn-success px-5 py-3 mr-3 ">Create Post</a>
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <button class=" btn btn-dark px-5 py-3 mr-3">Chiqish</button>
+                                </form>
+                            @else
+                                <a href="{{route('login')}}"
+                                   class=" float-right btn btn-success px-5 py-3 mr-3 ">Kirish</a>
+                            @endauth
+                        </div>
+                    </div>
                 </div>
+
             </nav>
         </div>
     </div>
@@ -126,7 +144,8 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="font-weight-semi-bold text-primary mb-4">Newsletter</h4>
-            <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum.</p>
+            <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd
+                sed ea duo ipsum.</p>
             <div class="w-100">
                 <div class="input-group">
                     <input type="text" class="form-control border-0" style="padding: 25px;" placeholder="Your Email">
@@ -138,10 +157,12 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: #3E3E4E !important;">
+<div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+     style="border-color: #3E3E4E !important;">
     <div class="row">
         <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
-            <p class="m-0 text-white">&copy; <a href="#">Your Site Name</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+            <p class="m-0 text-white">&copy; <a href="#">Your Site Name</a>. All Rights Reserved. Designed by <a
+                    href="https://htmlcodex.com">HTML Codex</a>
             </p>
         </div>
         <div class="col-lg-6 text-center text-md-right">
