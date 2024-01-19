@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
@@ -20,6 +21,27 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+    public function register()
+    {
+        return view('auth.register');
+    }
+    public function register_store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|same:password'
+        ]);
+
+        $user = User::create($validated);
+
+        auth()->login($user);
+
+        return redirect()->to('/');
+    }
+
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([

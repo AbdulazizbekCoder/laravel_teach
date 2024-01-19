@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $posts = Post::latest()->paginate(6);
@@ -29,7 +34,7 @@ class PostController extends Controller
 
         if ($request->hasFile('photo')) {
             $name = $request->file('photo')->getClientOriginalName();
-                $path = $request->file('photo')->storeAs('file_upload', $name);
+            $path = $request->file('photo')->storeAs('file_upload', $name);
         }
         $post = Post::create([
             'user_id' => 1,
@@ -59,6 +64,7 @@ class PostController extends Controller
     {
         return view('posts.edit')->with('post', $post);
     }
+
 
     public function update(StorePostRequest $request, Post $post)
     {

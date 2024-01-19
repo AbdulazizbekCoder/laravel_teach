@@ -11,17 +11,19 @@
     <!-- Detail Start -->
     <div class="container-fluid py-5">
         <div class="container">
-            <div class=" row text-left mb-5">
-                <a class="btn mr-3 btn-sm btn-info "
-                   href="{{route('posts.edit', ['post' => $post->id])}}">O'zgartirish</a>
-                <form action="{{route('posts.destroy', ['post'=> $post->id])}}" method="POST"
-                      onsubmit="return confirm('Postni o\'chirishni xohlaysizmi!')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class=" btn btn-sm btn-danger">O'chirish
-                    </button>
-                </form>
-            </div>
+            @auth()
+                <div class=" row text-left mb-5">
+                    <a class="btn mr-3 btn-sm btn-info "
+                       href="{{route('posts.edit', ['post' => $post->id])}}">O'zgartirish</a>
+                    <form action="{{route('posts.destroy', ['post'=> $post->id])}}" method="POST"
+                          onsubmit="return confirm('Postni o\'chirishni xohlaysizmi!')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class=" btn btn-sm btn-danger">O'chirish</button>
+                    </form>
+                </div>
+
+            @endauth
             <div class="row">
                 <div class="col-lg-8">
                     <div class="mb-5">
@@ -58,20 +60,22 @@
                         @endforeach
                     </div>
 
-                    <div class="bg-light rounded p-5">
-                        <h3 class="mb-4 section-title">Izoh qoldirish</h3>
-                        <form action="{{route('comments.store')}}" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label>Message *</label>
-                                <textarea name="body" cols="30" rows="5" class="form-control"></textarea>
-                            </div>
-                            <input type="hidden" name="post_id" value="{{$post->id}}">
-                            <div class="form-group mb-0">
-                                <input type="submit" value="Leave Comment" class="btn btn-primary">
-                            </div>
-                        </form>
-                    </div>
+                  @auth()
+                        <div class="bg-light rounded p-5">
+                            <h3 class="mb-4 section-title">Izoh qoldirish</h3>
+                            <form action="{{route('comments.store')}}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label>Message *</label>
+                                    <textarea name="body" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                                <input type="hidden" name="post_id" value="{{$post->id}}">
+                                <div class="form-group mb-0">
+                                    <input type="submit" value="Leave Comment" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
 
                 <div class="col-lg-4 mt-5 mt-lg-0">
