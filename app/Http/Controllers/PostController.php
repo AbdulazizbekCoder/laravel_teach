@@ -37,7 +37,7 @@ class PostController extends Controller
             $path = $request->file('photo')->storeAs('file_upload', $name);
         }
         $post = Post::create([
-            'user_id' => 1,
+            'user_id' => auth()->id(),
             'category_id' => $request->category_id,
             'title' => $request->title,
             'short_content' => $request->short_content,

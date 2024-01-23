@@ -85,6 +85,9 @@
                         <div class="d-inline-flex align-items-center ">
 
                             @auth()
+                                <div>
+                                    {{auth()->user()->name}}
+                                </div>
                                 <a href="{{route('posts.create')}}"
                                    class="btn btn-success px-5 py-3 mr-3 ">Create Post</a>
                                 <form action="{{route('logout')}}" method="post">
