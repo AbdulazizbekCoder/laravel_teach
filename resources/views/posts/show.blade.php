@@ -12,17 +12,18 @@
     <div class="container-fluid py-5">
         <div class="container">
             @auth()
-                <div class=" row text-left mb-5">
-                    <a class="btn mr-3 btn-sm btn-info "
-                       href="{{route('posts.edit', ['post' => $post->id])}}">O'zgartirish</a>
-                    <form action="{{route('posts.destroy', ['post'=> $post->id])}}" method="POST"
-                          onsubmit="return confirm('Postni o\'chirishni xohlaysizmi!')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class=" btn btn-sm btn-danger">O'chirish</button>
-                    </form>
-                </div>
-
+                @canany(['update', 'delete'], $post)
+                    <div class=" row text-left mb-5">
+                        <a class="btn mr-3 btn-sm btn-info "
+                           href="{{route('posts.edit', ['post' => $post->id])}}">O'zgartirish</a>
+                        <form action="{{route('posts.destroy', ['post'=> $post->id])}}" method="POST"
+                              onsubmit="return confirm('Postni o\'chirishni xohlaysizmi!')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class=" btn btn-sm btn-danger">O'chirish</button>
+                        </form>
+                    </div>
+                @endcanany
             @endauth
             <div class="row">
                 <div class="col-lg-8">
@@ -82,9 +83,9 @@
                         <img src="{{asset('assets/img/user.jpg')}}" class="img-fluid rounded-circle mx-auto mb-3"
                              style="width: 100px;">
                         <h3 class="text-white mb-3">{{$post->user->name}}</h3>
-{{--                        <p class="text-white m-0">Conset elitr erat vero dolor ipsum et diam, eos dolor lorem ipsum,--}}
-{{--                            ipsum--}}
-{{--                            ipsum sit no ut est. Guber ea ipsum erat kasd amet est elitr ea sit.</p>--}}
+                        {{--                        <p class="text-white m-0">Conset elitr erat vero dolor ipsum et diam, eos dolor lorem ipsum,--}}
+                        {{--                            ipsum--}}
+                        {{--                            ipsum sit no ut est. Guber ea ipsum erat kasd amet est elitr ea sit.</p>--}}
                     </div>
                     <div class="mb-5">
                         <div class="w-100">

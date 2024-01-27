@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('post_id')->constrained();
+            $table->string('post_id')->constrained()->onDelete('cascade');
             $table->string('tag_id')->constrained();
             $table->timestamps();
         });
